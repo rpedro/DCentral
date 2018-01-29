@@ -9,10 +9,10 @@ contract TestRefugeeRegister {
 
 // Testing the _createRefugee() function
 function testUserCan_createRefugee() public {
-  uint returnedId = adoption.adopt(8);
+  uint returnedId = refugeeregister._createRefugee(1, "Rodney", "Pedro", "G", "Male", 60374, "South African", "Active");
 
-  uint expected = 8;
+  uint expected = 1;
 
-  Assert.equal(returnedId, expected, "Adoption of pet ID 8 should be recorded.");
+  Assert.equal(returnedId, expected, "Refugee Id matches.");
 }
 }
