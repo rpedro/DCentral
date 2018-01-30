@@ -1,38 +1,30 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 contract RefugeeRegister {
 
+    address creator;
+
     struct Refugee {
-        string RefugeeId;
-        string FirstName;
-		string LastName;
-		string MiddleName;
-		string Gender;
-		string DateOfBirth;
-		string Nationality;
-		string RefugeeStatus;
+        string refugeeId;
         string refugeePublicKey;
+		bool active;        
+        string ipfsHash;
     }
 
-    Refugee[] public Refugees;
-    
 
-    function _createRefugee(
-        string _RefugeeId, 
-        string _FirstName, 
-        string _LastName, 
-        string _MiddleName, 
-        string _Gender, 
-        string _DateOfBirth, 
-        string _Nationality, 
-        string _RefugeeStatus,
-        string _refugeePublicKey
-    ) 
-        public 
-        returns (uint) 
-    {
-        uint id = Refugees.push(Refugee( _RefugeeId, _FirstName, _LastName, _MiddleName, _Gender, _DateOfBirth, _Nationality, _RefugeeStatus, _refugeePublicKey)) - 1;
-       
-        return _RefugeeId;
+    Refugee[] public refugees;
+    
+    function RefugeeRegister() public {
+        creator = msg.sender;
+    }
+
+
+    function createRefugee(string _refugeeId, string _refugeePublicKey) public {
+        refugees.push(Refugee(_refugeeId, _refugeePublicKey, true, ""));       
+    }
+
+
+    function getRefugeeId() public constant returns (string) {
+        return (refugees[0].refugeeId);
     }
 }
