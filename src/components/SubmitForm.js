@@ -10,17 +10,12 @@ class SubmitForm extends Component {
     this.state = {
       loadingPrice: false,
       fullName: '',
-<<<<<<< HEAD
       lastName: '',
       registrationNumber: '',
       nationality: '',
       dateOfBirth: '',
       gender: '',
       headOfHouseHold: ''
-=======
-      title: '',
-      text: '',
->>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
     };
   }
 
@@ -36,18 +31,11 @@ class SubmitForm extends Component {
   }
 
   saveText() {
-<<<<<<< HEAD
     let {fullName, lastName, registrationNumber, nationality, dateOfBirth, gender, headOfHouseHold} = this.state;
     let data = {fullName, lastName, registrationNumber, nationality, dateOfBirth, gender, headOfHouseHold};
 
     this.setState({savingText: true});
 
-=======
-    let {fullName, title, text} = this.state;
-    let data = {fullName, title, text};
-
-    this.setState({savingText: true});
->>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
     this.props.ipfs.addJSON(data, (err, hash) => {
       if (err) {
         this.setState({savingText: false});
@@ -68,12 +56,8 @@ class SubmitForm extends Component {
         let hashId = log.args._hashId.toNumber();
         this.props.addNotification(`Data saved successfully ! Submission ID: ${hashId}`, "success");
         this.props.onSubmit(hashId);
-<<<<<<< HEAD
       })
       .catch((err) => {
-=======
-      }).catch((err) => {
->>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
         this.setState({savingText: false});
         this.props.addNotification(err.message, "error");
       });
@@ -89,14 +73,10 @@ class SubmitForm extends Component {
       return false;
     }
 
-<<<<<<< HEAD
     // return this.state.fullName && this.state.title && this.state.text;
     return this.state.fullName && this.state.lastName && 
             this.state.registrationNumber && this.state.nationality && 
             this.state.dateOfBirth && this.state.gender && this.state.headOfHouseHold
-=======
-    return this.state.fullName && this.state.title && this.state.text;
->>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
   }
 
   render() {
@@ -107,7 +87,6 @@ class SubmitForm extends Component {
 
         <form className="pure-form">
           <fieldset className="pure-group">
-<<<<<<< HEAD
             <input type="text" className="pure-input-1-2" placeholder="Full Name" 
               value={this.state.fullName} onChange={e => this.updateInputValue(e, 'fullName')} />
             <input type="text" className="pure-input-1-2" placeholder="Last Name"
@@ -131,20 +110,6 @@ class SubmitForm extends Component {
               disabled={!this.validForm() || this.state.savingText} onClick={() => this.saveText()} 
             >
             Save
-=======
-            <input type="text" className="pure-input-1-2" placeholder="Full Name"
-                   value={this.state.fullName} onChange={e => this.updateInputValue(e, 'fullName')}/>
-            <input type="text" className="pure-input-1-2" placeholder="Title"
-                   value={this.state.title} onChange={e => this.updateInputValue(e, 'title')}/>
-            <textarea className="pure-input-1-2" placeholder="Your Text"
-                      value={this.state.text} onChange={e => this.updateInputValue(e, 'text')}
-            ></textarea>
-          </fieldset>
-
-          <Loader loaded={!this.state.savingText}>
-            <button type="button" className="pure-button pure-input-1-2 button-success"
-                    disabled={!this.validForm() || this.state.savingText} onClick={() => this.saveText()}>Save
->>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
             </button>
           </Loader>
         </form>
@@ -154,7 +119,3 @@ class SubmitForm extends Component {
 }
 
 export default SubmitForm;
-<<<<<<< HEAD
-
-=======
->>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
