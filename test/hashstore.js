@@ -14,14 +14,14 @@ contract('HashStore', function (accounts) {
     it("should store a hash and emits hash id event", async function () {
       const instance = await HashStore.deployed();
 
-      await instance.save(hashContent, {value: web3.toWei(0.002, 'ether'), from: accounts[1]});
+      await instance.save(hashContent, { value: web3.toWei(0.002, 'ether'), from: accounts[1] });
 
       const balance = await proxiedWeb3.eth.getBalance(instance.address);
       assert.equal(balance.toString(), web3.toWei(0.002, 'ether'));
 
       const eventLogs = await getEventLogs(instance, {
         event: "NewHashStored",
-        args: {_hashSender: accounts[1]}
+        args: { _hashSender: accounts[1] }
       });
       assert.equal(eventLogs.length, 1);
       const eventLog = eventLogs[0];
