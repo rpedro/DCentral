@@ -11,6 +11,8 @@ contract RefugeeRegister {
         string ipfsHash;
     }
 
+    ///  map refugee id map to addressess
+    
 
     Refugee[] public refugees;
     
@@ -19,12 +21,12 @@ contract RefugeeRegister {
     }
 
 
-    function createRefugee(string _refugeeId, string _refugeePublicKey) public {
-        refugees.push(Refugee(_refugeeId, _refugeePublicKey, true, ""));       
+    function createRefugee(string refugeeId, string refugeePublicKey) public {
+        refugees.push(Refugee(refugeeId, refugeePublicKey, true, ""));       
     }
 
 
-    function getRefugeeId() public constant returns (string) {
-        return (refugees[0].refugeeId);
+    function getRefugeeId(uint id) public constant returns (string) {
+        return (refugees[id].refugeeId);
     }
 }

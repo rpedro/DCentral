@@ -20,7 +20,7 @@ contract ('RefugeeRegister', function(accounts) {
     it("Refugee profile successfully created with all details populated", async function() {
         var refugeeId
         await contract.createRefugee(expectedID, expectedPublicKey);
-        refugeeId = await contract.getRefugeeId.call();
+        refugeeId = await contract.getRefugeeId.call(0);
         assert.equal(expectedID, refugeeId, "Incorrect ID returned");
     });
 });
