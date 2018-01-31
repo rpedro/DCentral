@@ -19,8 +19,8 @@ contract RefugeeRegister {
     }
 
 
-    function createRefugee(string _refugeeId, string _refugeePublicKey) public {
-        refugees.push(Refugee(_refugeeId, _refugeePublicKey, true, ""));       
+    function createRefugee(string _refugeeId, string _refugeePublicKey, string _ipfsHash) public {
+        refugees.push(Refugee(_refugeeId, _refugeePublicKey, true, _ipfsHash));       
     }
 
 
