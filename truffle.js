@@ -8,24 +8,19 @@ var ropstenPrivateKey = new Buffer(process.env["ROPSTEN_PRIVATE_KEY"], "hex")
 var ropstenWallet = Wallet.fromPrivateKey(ropstenPrivateKey);
 var ropstenProvider = new WalletProvider(ropstenWallet, "https://ropsten.infura.io/");
 
+
+
+
 module.exports = {
-  // See <http://truffleframework.com/docs/advanced/configuration>
-  // for more about customizing your Truffle configuration!
   networks: {
     development: {
       host: "localhost",
-      port: 9545,
+      port: 7545,
       network_id: "*" // Match any network id
     },
-    ropsten: {
-      provider: ropstenProvider,
-      // You can get the current gasLimit by running
-      // truffle deploy --network rinkeby
-      // truffle(rinkeby)> web3.eth.getBlock("pending", (error, result) =>
-      //   console.log(result.gasLimit))
-      gas: 4600000,
-      gasPrice: web3.toWei("20", "gwei"),
-      network_id: "3",
-    },
-  }
-};
+     ropsten:  {
+     network_id: 3,
+     host: "localhost",
+     port:  8545,
+     gas:   2900000
+}

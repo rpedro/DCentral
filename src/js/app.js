@@ -1,8 +1,13 @@
+// const IPFS = require('ipfs-mini').default
+const _ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+
+
+
+
+
 App = {
   ipfs: () => {
-    const IPFS = require('ipfs-mini').default
-    const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
-    return ipfs
+    return _ipfs
   },
 
   web3Provider: null,
@@ -19,7 +24,7 @@ App = {
       web3 = new Web3(web3.currentProvider);
     } else {
       // set the provider you want from Web3.providers
-      App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:9545');
+      App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');
       web3 = new Web3(App.web3Provider);
     }
 
@@ -30,11 +35,11 @@ App = {
     $.getJSON('RefugeeRegister.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
       var RefugeeRegisterArtifact = data;
-      App.contracts.RefugeeRegister = TruffleContract(RefugeeRegisterArtifact);
+      App.contracts.RefugeeRegister = TruffleContract({abi: RefugeeRegisterArtifact.abi});
 
       // Set the provider for our contract.
       App.contracts.RefugeeRegister.setProvider(App.web3Provider);
-
+      console.log(App.contracts.RefugeeRegister)
       // Use our contract to retieve and mark the adopted pets.
       return App.updateRefugeeRegister();
     });
@@ -49,17 +54,16 @@ App = {
   createBeneficiary: function(event) {
     event.preventDefault();
 
-    var name = parseInt($('#name').val());
+    var name = $('#name').val();
     var surname= $('#surname').val();
-    var regNumber = parseInt($('#regnumber').val());
+    var regNumber = $('#regnumber').val();
     var nationality = $('#nationality').val();
-    var dob = parseInt($('#dob').val());
+    var dob = $('#dob').val();
     var gender = $('#gender').val();
-    var head = parseInt($('#head').val());
+    var head = $('#head').val();
     var status = $('#status').val();
 
-    const data = JSON.stringify({ name, surname, regNumber, nationality, dob, gender, head, status })
-
+    var data = JSON.stringify({ name, surname, regNumber, nationality, dob, gender, head, status })
     console.log("Data", data)
     
     var tutorialTokenInstance;
@@ -71,16 +75,20 @@ App = {
 
       var account = accounts[0];
 
+      // const IPFS = require('ipfs-mini').default
+      // const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+
       App.ipfs().add(data, (err, hash) => {
         if (err) {
-          return console.log(err);
+          return console.log('ipfs.add error: ', err);
         }
         console.log('HASH: ', hash);
       });
+
     });
   },
 
-  updateRefugeeRegister: function(regNumber, publickey, ipfhash) {
+  updateRefugeeRegister: function(regNumber, publickey, ipfshash) {
 
     var RefugeeRegisterInstance;
 
@@ -92,7 +100,7 @@ App = {
       var account = accounts[0];
 
       // App.contracts.TutorialToken.deployed().then(function(instance) {
-      App.contracts.RefugeeRegister.at("0x17feb9e793d684e3f86ce1977e9e20acebf00ba601cc18daaa4f683f00a75e6c").then(function(instance) {
+      App.contracts.RefugeeRegister.at("0xeff7cb6f31af987bda0bdcde5b2c537a82a74c65").then(function(instance) {
         RefugeeRegisterInstance = instance;
 
         return RefugeeRegisterInstance.createRefugee(regNumber, publickey, ipfshash);
