@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import HashStoreContract from '../build/contracts/HashStore.json'
 import getWeb3 from './utils/getWeb3'
 
@@ -54,7 +54,7 @@ class App extends Component {
   }
 
   setupWeb3(cb) {
-    this.setState({loadingWeb3: true,});
+    this.setState({ loadingWeb3: true, });
     getWeb3.then(results => {
       let web3 = results.web3;
       if (!web3) {
@@ -95,14 +95,14 @@ class App extends Component {
         cb();
       });
     }).catch((err) => {
-      this.setState({loadingWeb3: false});
+      this.setState({ loadingWeb3: false });
       console.log('Error finding web3.', err.message);
     });
   }
 
   setupIpfs() {
-    const ipfs = new IPFS({host: 'ipfs.infura.io', port: 5001, protocol: 'https'});
-    this.setState({ipfs: ipfs});
+    const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
+    this.setState({ ipfs: ipfs });
   }
 
   instantiateContract() {
@@ -110,7 +110,7 @@ class App extends Component {
     hashStoreContract.setProvider(this.state.web3.currentProvider);
 
     hashStoreContract.deployed().then((hashStoreContractInstance) => {
-      this.setState({hashStoreContractInstance});
+      this.setState({ hashStoreContractInstance });
     }).catch((err) => {
       this.addNotification(err.message, "error");
     });
@@ -119,37 +119,37 @@ class App extends Component {
 
 
   onSubmit(hashId) {
-    this.setState({submitFormDisplayed: false});
+    this.setState({ submitFormDisplayed: false });
   }
 
   showSubmitForm() {
-    this.setState({submitFormDisplayed: true});
-    this.setState({fetchFormDisplayed: false});
-    this.setState({recentSubmissionsDisplayed: false});
+    this.setState({ submitFormDisplayed: true });
+    this.setState({ fetchFormDisplayed: false });
+    this.setState({ recentSubmissionsDisplayed: false });
   }
 
   showFetchForm() {
-    this.setState({fetchFormDisplayed: true});
-    this.setState({submitFormDisplayed: false});
-    this.setState({recentSubmissionsDisplayed: false});
+    this.setState({ fetchFormDisplayed: true });
+    this.setState({ submitFormDisplayed: false });
+    this.setState({ recentSubmissionsDisplayed: false });
   }
 
   showRecentSubmissions() {
-    this.setState({recentSubmissionsDisplayed: true});
-    this.setState({fetchFormDisplayed: false});
-    this.setState({submitFormDisplayed: false});
+    this.setState({ recentSubmissionsDisplayed: true });
+    this.setState({ fetchFormDisplayed: false });
+    this.setState({ submitFormDisplayed: false });
   }
 
   render() {
     let noNetworkError = (
-        this.state.web3 ?
-          <h3 className="no-network">The App is not connected to a network, please install and setup MetaMask/Mist</h3> :
-          <h3 className="no-network">You're not connected to an Ethereum network. Please install <a href="https://metamask.io/">MetaMask</a> or Mist</h3>
-        );
+      this.state.web3 ?
+        <h3 className="no-network">The App is not connected to a network, please install and setup MetaMask/Mist</h3> :
+        <h3 className="no-network">You're not connected to an Ethereum network. Please install <a href="https://metamask.io/">MetaMask</a> or Mist</h3>
+    );
 
     return (
       <div className="App">
-        <NotificationSystem ref="notificationSystem"/>
+        <NotificationSystem ref="notificationSystem" />
 
         <nav className="navbar pure-menu pure-menu-horizontal">
           <a href="#" className="pure-menu-heading pure-menu-link">IPFS Ethereum Demo</a>
@@ -173,34 +173,34 @@ class App extends Component {
                     <div className="pure-u-1-1">
                       <h2>Try it out ! </h2>
                       <button className="pure-button pure-button-primary" onClick={() => this.showSubmitForm()}
-                              disabled={this.state.submitFormDisplayed}> Submit Text
+                        disabled={this.state.submitFormDisplayed}> Submit Text
                       </button>
                       <button className="pure-button pure-button-primary"
-                              onClick={() => this.showFetchForm()}
-                              disabled={this.state.fetchFormDisplayed}> Fetch Submission
+                        onClick={() => this.showFetchForm()}
+                        disabled={this.state.fetchFormDisplayed}> Fetch Submission
                       </button>
                       <button className="pure-button pure-button-primary"
-                              onClick={() => this.showRecentSubmissions()}
-                              disabled={this.state.recentSubmissionsDisplayed}> Recent Submissions
+                        onClick={() => this.showRecentSubmissions()}
+                        disabled={this.state.recentSubmissionsDisplayed}> Recent Submissions
                       </button>
 
                       {this.state.submitFormDisplayed ?
                         <SubmitForm web3={this.state.web3} ipfs={this.state.ipfs}
-                                    hashStoreContractInstance={this.state.hashStoreContractInstance}
-                                    addNotification={this.addNotification.bind(this)}
-                                    onSubmit={this.onSubmit.bind(this)}/>
+                          hashStoreContractInstance={this.state.hashStoreContractInstance}
+                          addNotification={this.addNotification.bind(this)}
+                          onSubmit={this.onSubmit.bind(this)} />
                         : null}
 
                       {this.state.fetchFormDisplayed ?
                         <FetchForm web3={this.state.web3} ipfs={this.state.ipfs}
-                                   addNotification={this.addNotification.bind(this)}
-                                   hashStoreContractInstance={this.state.hashStoreContractInstance}/>
+                          addNotification={this.addNotification.bind(this)}
+                          hashStoreContractInstance={this.state.hashStoreContractInstance} />
                         : null}
 
                       {this.state.recentSubmissionsDisplayed ?
                         <RecentSubmissions web3={this.state.web3} ipfs={this.state.ipfs}
-                                           hashStoreContractInstance={this.state.hashStoreContractInstance}
-                                           addNotification={this.addNotification.bind(this)}/>
+                          hashStoreContractInstance={this.state.hashStoreContractInstance}
+                          addNotification={this.addNotification.bind(this)} />
 
                         : null}
 
