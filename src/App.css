@@ -22,6 +22,16 @@ code {
   padding: 45px 20px;
 }
 
+<<<<<<< HEAD
+=======
+.pure-button-primary {
+  background-color: #0c1a2b;
+}
+
+.pure-button-primary:hover {
+  background-color: #233e5e;
+}
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
 
 .pure-form input[type="text"]:focus {
   border-color: #0c1a2b;
@@ -34,7 +44,10 @@ code {
   padding: 5px;
   background: #0c1a2b;
   font-family: 'Oswald', 'Arial Narrow', sans-serif;
+<<<<<<< HEAD
   z-index: 9999;
+=======
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
 }
 
 .navbar a {
@@ -60,6 +73,7 @@ code {
   height: 16px;
   margin-right: 10px;
 }
+<<<<<<< HEAD
 
 .button-success,
 .button-error,
@@ -132,3 +146,5 @@ code {
 .submission-label{
   padding-right: 10px;
 }
+=======
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba

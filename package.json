@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "stone-dapp",
   "version": "1.0.0",
+=======
+  "name": "react-box",
+  "version": "0.1.0",
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",
@@ -32,7 +37,10 @@
     "http-proxy-middleware": "0.17.2",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
+<<<<<<< HEAD
     "lodash": "^4.17.4",
+=======
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
     "postcss-loader": "1.0.0",
@@ -51,12 +59,19 @@
   },
   "dependencies": {
     "dotenv": "^2.0.0",
+<<<<<<< HEAD
     "ipfs": "^0.26.0",
     "ipfs-mini": "^1.1.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-loader": "^2.4.2",
     "react-notification-system": "^0.2.15"
+=======
+    "ipfs-mini": "^1.1.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-loader": "^2.4.2"
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
   },
   "scripts": {
     "start": "node scripts/start.js",

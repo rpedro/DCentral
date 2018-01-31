@@ -48,7 +48,10 @@ class FetchForm extends Component {
           submission.title = data.title;
           submission.text = data.text;
           submission.fullName = data.fullName;
+<<<<<<< HEAD
           submission.registrationNumber = data.registrationNumber;
+=======
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
           resolve(submission);
         });
       }).catch((err) => {
@@ -73,10 +76,13 @@ class FetchForm extends Component {
             <label className="submission-label">Full Name:</label>
             <span className="submission-full-name">{submission.fullName}</span>
           </div>
+<<<<<<< HEAD
           <div className="pure-u-8-24">
             <label className="submission-label">Registration Number:</label>
             <span className="submission-reg-number">{submission.registrationNumber}</span>
           </div>
+=======
+>>>>>>> 55b01f7fb26cbabd53ab2edcaa7d8c59f3881cba
           <div className="pure-u-5-5">
             <p className="submission-text">{submission.text}</p>
           </div>
