@@ -7,7 +7,7 @@ contract RefugeeRegister {
     struct Refugee {
         string refugeeId;
         string refugeePublicKey;
-		bool active;        
+        bool active;        
         string ipfsHash;
     }
 
