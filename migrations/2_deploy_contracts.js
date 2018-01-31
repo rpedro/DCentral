@@ -1,5 +1,10 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
+var RefugeeRegister = artifacts.require("RefugeeRegister");
+var MerchantRegister = artifacts.require("MerchantRegister");
 
 module.exports = function(deployer) {
-  deployer.deploy(SimpleStorage);
+  deployer.deploy(RefugeeRegister);
+};
+
+module.exports = function(deployer) {
+  deployer.deploy(MerchantRegister);
 };
