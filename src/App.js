@@ -7,6 +7,12 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+// import SubmitForm from './components/SubmitForm';
+// import RecentSubmissions from './components/RecentSubmissions';
+import FetchForm from './components/FetchForm';
+
+const IPFS = require('ipfs-mini');
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +39,14 @@ class App extends Component {
     .catch(() => {
       console.log('Error finding web3.')
     })
+    this.setupIpfs();
+    console.log('setupIpfs')
   }
+
+  setupIpfs() {
+    const ipfs = new IPFS({host: 'ipfs.infura.io', port: 5001, protocol: 'https'});
+    this.setState({ipfs: ipfs});
+  }  
 
   instantiateContract() {
     /*
@@ -54,7 +67,6 @@ class App extends Component {
     this.state.web3.eth.getAccounts((error, accounts) => {
       simpleStorage.deployed().then((instance) => {
         simpleStorageInstance = instance
-
         // Stores a given value, 5 by default.
         return simpleStorageInstance.set(5, {from: accounts[0]})
       }).then((result) => {
@@ -85,6 +97,16 @@ class App extends Component {
               <p>The stored value is: {this.state.storageValue}</p>
             </div>
           </div>
+
+          <FetchForm 
+            web3={this.state.web3} 
+            ipfs={this.state.ipfs}
+            // addNotification={this.addNotification.bind(this)}
+            hashStoreContractInstance={this.state.hashStoreContractInstance}
+          />
+
+          <button className="pure-button pure-button-primary" > Submit </button>
+
         </main>
       </div>
     );
