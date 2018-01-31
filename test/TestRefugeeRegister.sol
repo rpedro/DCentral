@@ -1,6 +1,6 @@
 pragma solidity ^0.4.17;
 
-import "truffle/Assert.sol";
+/* import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/RefugeeRegister.sol";
 
@@ -13,4 +13,4 @@ contract TestRefugeeRegister {
   		// string expected = "super ID 001";
   		Assert.equal(returnedId, "super ID 001", "Refugee Id matches.");
 	}
-}
+} */
