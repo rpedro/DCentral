@@ -1,10 +1,6 @@
 // const IPFS = require('ipfs-mini').default
 const _ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
-
-
-
-
 App = {
   ipfs: () => {
     return _ipfs
@@ -100,7 +96,7 @@ App = {
       var account = accounts[0];
 
       // App.contracts.TutorialToken.deployed().then(function(instance) {
-      App.contracts.RefugeeRegister.at("0xeff7cb6f31af987bda0bdcde5b2c537a82a74c65").then(function(instance) {
+      App.contracts.RefugeeRegister.at("0xc2956e6c60158429fd46aa2a3dd05641c681ca0d").then(function(instance) {
         RefugeeRegisterInstance = instance;
 
         return RefugeeRegisterInstance.createRefugee(regNumber, publickey, ipfshash);

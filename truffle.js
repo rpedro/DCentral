@@ -8,19 +8,12 @@ var ropstenPrivateKey = new Buffer(process.env["ROPSTEN_PRIVATE_KEY"], "hex")
 var ropstenWallet = Wallet.fromPrivateKey(ropstenPrivateKey);
 var ropstenProvider = new WalletProvider(ropstenWallet, "https://ropsten.infura.io/");
 
-
-
-
 module.exports = {
   networks: {
     development: {
-      host: "localhost",
+      host: "127.0.0.1",
       port: 7545,
       network_id: "*" // Match any network id
-    },
-     ropsten:  {
-     network_id: 3,
-     host: "localhost",
-     port:  8545,
-     gas:   2900000
-}
+    }
+  }
+};
